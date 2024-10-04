@@ -1,0 +1,4 @@
+<nz-select  class="select" nzShowSearch nzAllowClear nzPlaceHolder="请选择数据来源" [(ngModel)]="data.dataSourceType">
+  <nz-option *ngFor="let item of dataSourceTypeList" [nzLabel]="item.label" [nzValue]="item.value"></nz-option>
+</nz-select>
+

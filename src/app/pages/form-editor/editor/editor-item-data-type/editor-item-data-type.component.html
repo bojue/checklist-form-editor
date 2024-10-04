@@ -1,0 +1,3 @@
+<nz-select class="select" nzShowSearch nzAllowClear nzPlaceHolder="请选择赋值类型" [(ngModel)]="data.dataType">
+  <nz-option *ngFor="let item of dataTypeList" [nzLabel]="item.label + ' ('+ item.value+')'" [nzValue]="item.value"></nz-option>
+</nz-select>

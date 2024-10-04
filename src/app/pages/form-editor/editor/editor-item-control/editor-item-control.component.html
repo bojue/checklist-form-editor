@@ -1,0 +1,12 @@
+<button nz-button [nzSize]="size"  nzTheme="twotone" (click)="controlItem('add')"><i nz-icon nzType="file-add" nzTheme="twotone"></i></button>
+<ng-container *ngIf="type !== addEntity">
+  <button nz-button [nzSize]="size" *ngIf="type !== 'label'">
+    <i nz-icon nzType="copy" nzTheme="twotone"></i>
+  </button>
+  <button nz-button [nzSize]="size" nzType="default"  *ngIf="type !== 'label'">
+    <i nz-icon nzType="edit" nzTheme="twotone"></i>
+  </button>
+  <button nz-button [nzSize]="size" nzType="link" nzDanger (click)="controlItem('del')">
+    <i nz-icon nzType="delete" nzTheme="outline" style="color:red;"></i>
+  </button>
+</ng-container>

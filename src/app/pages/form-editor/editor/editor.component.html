@@ -1,0 +1,24 @@
+<div class="s-editor">
+  <div class="side-bar">
+    
+  </div>
+  <div class="content">
+    <div class="header">
+      {{formEditorContentData.name}}
+    </div>
+    <div class="editor-body">
+      <div class="editor-title">
+        <div class="title-item" *ngFor="let item of formEditorTitle">{{item.name}}</div>
+      </div>
+      <div class="editor-content">
+        <div class="content" *ngIf="formEditorContentData.data.length">
+          <app-editor-item [dataList]="formEditorContentData.data" [formEditorTitle]="formEditorTitle" (formDataOperation)="formDataOperation($event)"></app-editor-item>
+        </div>
+        <app-no-data *ngIf="!formEditorContentData.data.length" [title]="'创建新的检查单！'" [buttonText]="'新建条目'"></app-no-data>
+      </div>
+    </div>
+  </div>
+  <div class="setting">
+
+  </div>
+</div>

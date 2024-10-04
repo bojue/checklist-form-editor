@@ -1,0 +1,49 @@
+.header {
+  font-size: 24px;
+  font-weight: 500;
+  width: 1605px;
+  text-align: center;
+  margin: 20px 10px 10px 10px;
+}
+.editor-body {
+  position: relative;
+  padding: 0px 0;
+  width: 1605px;
+  .editor-title {
+    display: grid;
+    grid-template-columns:repeat(8, 200px);
+    font-size: 14px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 40px;
+    color:rgba(0,0,0,.85);
+    background: #fafafa;
+    border-top: 1px solid #f0f0f0;
+    
+  }
+  .title-item {
+    width: 200px;
+    padding: 0px 10px;
+    text-align: center;
+  }
+}
+
+.editor-content {
+  width: 100%;
+  min-height: 500px;
+  border: 1px solid #f0f0f0;
+}
+.project-item {
+  display: flex;
+  flex-direction: row;
+  .type-item {
+    width: 200px;
+    padding: 10px 10px;
+  }
+}
+
+.btns {
+  button {
+    margin-right: 10px;
+  }
+}

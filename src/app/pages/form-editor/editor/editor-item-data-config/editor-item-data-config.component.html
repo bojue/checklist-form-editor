@@ -1,0 +1,6 @@
+
+<span  *ngIf="['input','api'].includes(data.dataSourceType)" class="noData">无</span>
+<nz-select class="select" *ngIf="data.dataSourceType === 'select'" nzShowSearch nzAllowClear nzPlaceHolder="请选择数据来源" [(ngModel)]="data.dataConfig">
+  <nz-option *ngFor="let item of selectDataSourceList" [nzLabel]="item.label" [nzValue]="item.value"></nz-option>
+</nz-select>
+<textarea  class="select" *ngIf="data.dataSourceType === 'custom'" nz-input [(ngModel)]="data.customData" [placeholder]="placeholder"></textarea>

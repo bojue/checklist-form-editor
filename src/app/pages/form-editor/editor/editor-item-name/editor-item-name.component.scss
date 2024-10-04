@@ -1,0 +1,23 @@
+.editor:empty:before{ 
+  content: '请输入标内容'; 
+  color: rgba(0, 0, 0, 0.35); 
+  padding: 2px 0;
+} 
+
+.editor {
+  max-width: 180px;
+  margin: 4px 4px;
+  padding:0 5px;
+  line-height: 1.1;
+  min-height: 46px;
+  &:focus {
+    outline: 1px solid #1890ff;
+  }
+}
+
+.width-full {
+  width: 180px;
+}
+.width-custom {
+  width: 132px;
+}
