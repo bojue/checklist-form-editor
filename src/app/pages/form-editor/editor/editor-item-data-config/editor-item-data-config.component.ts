@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import * as _ from 'lodash'
 
 @Component({
   selector: 'app-editor-item-data-config',
@@ -14,6 +15,9 @@ export class EditorItemDataConfigComponent implements OnInit {
     label: '[有效,无效]',
     value: '[有效,无效]',
   }, {
+    label: '[合格,不合格]',
+    value: '[合格,不合格]',
+  }, {
     label: '[合法,非法]',
     value: '[合法,非法]',
   }, {
@@ -21,11 +25,15 @@ export class EditorItemDataConfigComponent implements OnInit {
     value: '[过高,正常,过低,低,高]',
   }]
 
-  placeholder = "自定义数据源结构<string>[],举例:[是,否]"
+  placeholder = "请输入自定义数据源"
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  getValue(value) {
+    return _.filter(this.selectDataSourceList, value)?.[0]?.label
   }
 
 }

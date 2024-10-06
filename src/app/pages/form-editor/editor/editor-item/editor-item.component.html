@@ -2,24 +2,35 @@
   <div class="label-name">
     <app-editor-item-name class="inline-block" [item]="projectItem"></app-editor-item-name>
     <app-editor-item-control 
-      class="setting-item" 
+      class="setting-label" 
       [type]="'label'" 
-      (addItem)="formControlEvent(projectItem,'add', _index, 1, null)"
-      (deleteItem)="formControlEvent(projectItem,'del', _index, 1, null)"
+      [list]="dataList"
+      (editorDataEvent)="formControlEvent($event, projectItem, _index, 1, null)"
       ></app-editor-item-control> 
   </div>
   <div class="project-content">
-    <app-editor-item-control class="setting-item"
-    [type]="'addEntity'"
-    (addItem)="formControlEvent(null, 'add', _index, 2, projectItem)"></app-editor-item-control> 
-
-    <div class="project-sub-item" *ngFor="let projectSubItem of projectItem.children">
+    <div *ngFor="let projectSubItem of projectItem.children;let _childIndex = index;" 
+      [ngClass]="{
+        active: projectSubItem?._active,
+        'text-center': !projectSubItem?._active,
+        'project-sub-item': true
+      }">
       <div class="label-name">
-        <app-editor-item-name class="inline-block" [item]="projectSubItem" [full]="true"></app-editor-item-name>
+        <app-editor-item-data-textarea
+        [placeholder]="'请输入名称'"
+        [data]="projectSubItem"
+        [param]="'label'"
+        ></app-editor-item-data-textarea>
+
+        <!-- <app-editor-item-name class="inline-block" [item]="projectSubItem" [full]="true"></app-editor-item-name> -->
       </div>
       <div class="project-sub-content">
         <div class="project-entity-item">
-          <textarea  class="select" nz-input [(ngModel)]="projectSubItem.standard" placeholder="请输入检查标准"></textarea>
+          <app-editor-item-data-textarea
+            [placeholder]="'请输入检查标准'"
+            [data]="projectSubItem"
+            [param]="'standard'"
+            ></app-editor-item-data-textarea>
           <div class="entity-content">
              <ng-container class="title" *ngFor="let typeItem of subTitle;">
               <!-- 赋值类型 -->
@@ -29,10 +40,19 @@
               <!-- 数据源设置 -->
               <app-editor-item-data-config *ngIf="['dataConfig'].includes(typeItem.type) && projectSubItem"  [data]="projectSubItem"></app-editor-item-data-config>
               <!-- 描述 -->
-              <textarea  class="select" *ngIf="['description'].includes(typeItem.type)" nz-input [(ngModel)]="projectSubItem.description" placeholder="请输入描述"></textarea>
+              <!-- <app-editor-item-data-textarea
+                *ngIf="['description'].includes(typeItem.type)" 
+                [placeholder]="'请输入描述'"
+                [data]="projectSubItem"
+                [param]="'description'"
+                ></app-editor-item-data-textarea> -->
               <!-- 操作 -->
-              <app-editor-item-control class="setting-item"  *ngIf="['control'].includes(typeItem.type)"
-              (addItem)="formControlEvent(projectSubItem, 'add', _index, 2, projectItem)"></app-editor-item-control> 
+              <app-editor-item-control 
+              class="setting-item"  
+              *ngIf="['control'].includes(typeItem.type)"
+              [list]="projectItem.children"
+              [data]="projectSubItem"
+              (editorDataEvent)="formControlEvent( $event,projectSubItem, _childIndex, 2, projectItem)"></app-editor-item-control> 
              </ng-container>
           </div>
         </div>

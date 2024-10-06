@@ -1,7 +1,10 @@
 .select {
-  width: 178px;
+  width: 180px;
   margin: 4px 10px;
 }
 .noData {
-  color: rgba(0, 0, 0, 0.35);
+  color: rgba(0, 0, 0, 0.45);
+  width: 100%;
+  display: inline-block;
+  text-align: center;
 }

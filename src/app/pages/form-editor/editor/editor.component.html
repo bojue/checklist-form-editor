@@ -1,10 +1,10 @@
 <div class="s-editor">
-  <div class="side-bar">
-    
+  <div class="nav-header">
+    <app-nav-operation (operationEvent)="operation($event)"></app-nav-operation>
   </div>
   <div class="content">
     <div class="header">
-      {{formEditorContentData.name}}
+      <app-editor-item-name class="inline-block" [item]="formEditorContentData" [param]="'name'"></app-editor-item-name>
     </div>
     <div class="editor-body">
       <div class="editor-title">
@@ -14,11 +14,8 @@
         <div class="content" *ngIf="formEditorContentData.data.length">
           <app-editor-item [dataList]="formEditorContentData.data" [formEditorTitle]="formEditorTitle" (formDataOperation)="formDataOperation($event)"></app-editor-item>
         </div>
-        <app-no-data *ngIf="!formEditorContentData.data.length" [title]="'创建新的检查单！'" [buttonText]="'新建条目'"></app-no-data>
+        <app-no-data *ngIf="!formEditorContentData.data.length" (createForm)="createForm()" [title]="'创建新的检查单！'" [buttonText]="'新建条目'"></app-no-data>
       </div>
     </div>
-  </div>
-  <div class="setting">
-
   </div>
 </div>

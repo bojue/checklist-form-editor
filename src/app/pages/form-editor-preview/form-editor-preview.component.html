@@ -1,0 +1,32 @@
+<div class="preview">
+  <div class="content">
+    <div class="terminal" [ngClass]="{
+      pad: terminal === 'pad',
+      phone: terminal === 'phone'
+    }">
+      <div class="form-title">{{pageData?.name}}</div>
+      <div class="project-item" *ngFor="let projectItem of pageData?.data">
+        <div class="project-title">{{projectItem.label}}</div>
+        <div class="project-content">
+          <div class="entity-item" *ngFor="let entityItem of projectItem.children">
+            <div class="title">{{entityItem.label}}</div>
+            <div class="description">{{entityItem.standard}}</div>
+            <div class="entity-content">
+              <app-item-switch  [data]="entityItem" *ngIf="entityItem.dataType === 'boolean'"></app-item-switch>
+              <app-item-number  [data]="entityItem" *ngIf="entityItem.dataType === 'number'"></app-item-number>
+              <app-item-input  [data]="entityItem" *ngIf="entityItem.dataType === 'input'"></app-item-input>
+              <app-item-textarea  [data]="entityItem" *ngIf="entityItem.dataType === 'textarea'"></app-item-textarea>
+              <app-item-text  [data]="entityItem" *ngIf="entityItem.dataType === 'text'"></app-item-text>
+              <app-item-select [data]="entityItem" *ngIf="entityItem.dataType === 'select'"></app-item-select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="setting">
+      <div class="setting-body">
+        <app-qrcode></app-qrcode>
+      </div>
+    </div>
+  </div>
+</div>

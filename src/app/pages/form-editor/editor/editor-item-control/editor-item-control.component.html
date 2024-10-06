@@ -1,12 +1,21 @@
-<button nz-button [nzSize]="size"  nzTheme="twotone" (click)="controlItem('add')"><i nz-icon nzType="file-add" nzTheme="twotone"></i></button>
-<ng-container *ngIf="type !== addEntity">
-  <button nz-button [nzSize]="size" *ngIf="type !== 'label'">
-    <i nz-icon nzType="copy" nzTheme="twotone"></i>
+<div class="controls" [ngClass]="{editorItem: type !== 'label'}">
+  <ng-container *ngIf="!data?._active">
+  <button nz-button [nzSize]="size" [title]="btns.add" nzTheme="twotone" (click)="controlItem('add')"><i nz-icon
+    nzType="file-add" nzTheme="twotone"></i></button>
+  <button nz-button [nzSize]="size" [title]="btns.copy" *ngIf="type !== 'label'" (click)="controlItem('copy')">
+  <i nz-icon nzType="copy" nzTheme="twotone"></i>
   </button>
-  <button nz-button [nzSize]="size" nzType="default"  *ngIf="type !== 'label'">
-    <i nz-icon nzType="edit" nzTheme="twotone"></i>
+  <button 
+    nz-button [nzSize]="size" [title]="btns.editor" nzType="default" *ngIf="type !== 'label' && !data._active" (click)="controlItem('editor')">
+  <i nz-icon nzType="edit" nzTheme="twotone"></i>
   </button>
-  <button nz-button [nzSize]="size" nzType="link" nzDanger (click)="controlItem('del')">
-    <i nz-icon nzType="delete" nzTheme="outline" style="color:red;"></i>
-  </button>
-</ng-container>
+  <button nz-button [ngClass]="{disabled: list.length < 2}" [nzSize]="size" [title]="btns.delete" nzType="link" nzDanger (click)="list.length > 1 && controlItem('delete')">
+  <i nz-icon nzType="delete" nzTheme="outline" style="color:red;"></i>
+  </button></ng-container>
+
+  <button 
+  nz-button [nzSize]="size" [title]="btns.editor" nzType="default" *ngIf="type !== 'label' && data?._active" (click)="controlItem('save')">
+  <i nz-icon nzType="save" nzTheme="twotone"></i>
+</button>
+
+</div>

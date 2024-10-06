@@ -1,4 +1,6 @@
-<nz-select  class="select" nzShowSearch nzAllowClear nzPlaceHolder="请选择数据来源" [(ngModel)]="data.dataSourceType">
+<nz-select *ngIf="data._active" class="select" nzShowSearch nzAllowClear nzPlaceHolder="请选择数据来源" [(ngModel)]="data.dataSourceType">
   <nz-option *ngFor="let item of dataSourceTypeList" [nzLabel]="item.label" [nzValue]="item.value"></nz-option>
 </nz-select>
-
+<div *ngIf="!data._active">
+  {{getValue(data.dataSourceType)}}
+</div>

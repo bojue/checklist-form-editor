@@ -1,0 +1,56 @@
+
+.content {
+  display: flex;
+  flex-direction: row;
+}
+
+.terminal {
+  overflow-y: auto;
+  &.phone {
+    width: 390px;
+    height: 844px;
+
+    .form-title {
+      font-size: 16px;
+      font-weight: 500;
+      width: 100%;
+      text-align: center;
+      color: rgba(0, 0, 0, 0.85);
+    }
+    .project-title {
+      border-left: 3px solid steelblue;
+      font-size: 14px;
+      font-weight: 500;
+      margin: 10px 0;
+      padding: 0px 10px;
+    }
+    .title {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .description {
+      color: #999;
+      font-size: 12px;
+      margin: 3px 0px;
+    }
+  }
+}
+
+
+::ng-deep {
+  .entity-content {
+    .entity-item {
+      margin: 10px 0;
+    }
+    .item {
+      width: 90%;
+      margin: 10px 0;
+    }
+    nz-select,  
+    nz-input-number, 
+    input {
+      width: 100%;
+    }
+  }
+}

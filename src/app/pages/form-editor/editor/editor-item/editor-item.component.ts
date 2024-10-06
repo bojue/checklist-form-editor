@@ -39,7 +39,7 @@ export class EditorItemComponent implements OnInit {
    * @param index 
    * @param level 
    */
-  formControlEvent(currentParentData, eventType, index, level, parentData) {
+  formControlEvent(eventType, currentParentData, index, level, parentData) {
     this.formDataOperation.emit({
       index,
       level,

@@ -1,0 +1,10 @@
+<div class="navs">
+  <button 
+  nz-button [nzSize]="size" [title]="btns.preview" nzType="default"  (click)="operation('preview')">
+  <i nz-icon nzType="play-circle" nzTheme="twotone"></i> {{btns.preview}}
+</button>
+  <button 
+  nz-button [nzSize]="size" [title]="btns.save" nzType="default"  (click)="operation('save')">
+  <i nz-icon nzType="save" nzTheme="twotone"></i> {{btns.save}}
+  </button>
+</div>

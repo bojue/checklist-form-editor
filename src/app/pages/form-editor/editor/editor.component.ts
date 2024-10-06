@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { formEditorForm, formEditorFormData } from 'src/app/types/editor';
+import * as _ from 'lodash';
+import { EditorService } from 'src/app/services/editor.service';
+import { PreviewService } from 'src/app/services/preview.service';
 
 @Component({
   selector: 'app-editor',
@@ -26,49 +29,62 @@ export class EditorComponent implements OnInit {
     name: '数据源配置',
     type: "dataConfig"
   },{
-    name: '备注',
-    type: 'description'
-  },  {
+  //   name: '备注',
+  //   type: 'description'
+  // },  {
     name: "操作",
     type: 'control'
   }]
 
 
-  addFormItem = {
-    label: '请数据名称',
-    dataType: 'string',
-    dataSourceType: 'string',
-    dataSource: 'api',
-    children: []
-  }
-
+  /**
+   * 添加检查项
+   */
   addEntityItem = {
     label: '',
     dataType: 'string',
-    dataSourceType: 'string',
-    dataSource: 'input'
+    dataSourceType: 'input',
   }
 
-  testData: any = [{
+  /**
+   * 添加分类元素
+   */
+  addFormItem: any = {
     label: '',
     dataType: 'string',
-    dataSourceType: 'string',
-    dataSource: 'input',
-    children: []
-  }]
+    dataSourceType: 'input',
+    children: [_.cloneDeep(this.addEntityItem)]
+  }
+
+
+  initFormData: any = {
+    name: '检查单名称',
+    data: [_.cloneDeep(this.addFormItem)]
+  }
 
   formEditorContentData:formEditorForm = {
-    name: '表单名称',
-    data: [...this.testData]
+    ...this.initFormData
   }
 
 
-  constructor() { }
+  constructor(
+    public service: EditorService,
+    public previewService: PreviewService
+  ) { }
 
   ngOnInit(): void {
-    
+    const data = this.service.getPage()
+    if(data) {
+      this.formEditorContentData = JSON.parse(data)
+    }
   }
 
+  /**
+   * 创建表单
+   */
+  createForm() {
+    this.formEditorContentData = {...this.initFormData}
+  }
 
   /**
    * 表单数据操作
@@ -79,28 +95,54 @@ export class EditorComponent implements OnInit {
       index,
       type, 
       data,
+      level,
       parentData
     } = event
 
-    console.log(event, data)
-    const list = parentData || this.formEditorContentData.data
+    // 根目录
+    const isRootData = level === 1
+    if(isRootData) {
+      this.dataOperations(type, this.formEditorContentData.data, index, this.addFormItem)
+    } else {
+      this.dataOperations(type,  parentData.children, index, this.addEntityItem)
+    }
+  }
+
+  /**
+   * 数据操作
+   */
+  dataOperations(type: string, list: any[], index: number, addItem: any) {
     switch(type) {
       case 'add':
         // @ts-ignore
-        list.splice(index, 0, this.addEntityItem)
+        list.splice(index + 1, 0, _.cloneDeep(addItem))
         break;
-      case 'del':
+      case 'delete':
         list.splice(index, 1)
+        break
+      case 'copy': 
+        list.splice(index +1, 0, _.cloneDeep(list[index] || addItem))
     }
-
-    console.log(this.formEditorContentData, data)
-
-    if(data) {
-      
-      // data.children.push(this.addFormItem)
-    }
-
-    console.log(data)
   }
+
+  /**
+   * 保存和预览等操作
+   */
+  operation(state: string) {
+    if(state === 'save') {
+      this.savePage()
+    } else if(state === 'preview') {
+      this.previewPage()
+    }
+  }
+
+  savePage() {
+    this.service.savePage(this.formEditorContentData)
+  }
+
+  previewPage() {
+    this.previewService.preview(this.formEditorContentData)
+  }
+
 
 }

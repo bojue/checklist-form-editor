@@ -1,3 +1,4 @@
 <div class="setting-item">
-  <div class="setting-item editor" [ngClass]="{'width-full': full, 'width-custom': !full}" (input)="changeValue($event)"  contenteditable="true">{{item.label}}</div> 
+  <div class="setting-item editor" [textContent]="item[param || 'label']" [ngClass]="{'width-full': full, 'width-custom': !full, 'title': isTitle}" (input)="changeValue($event)"  contenteditable="true">{{item.label}}</div> 
+  <i *ngIf="isTitle" class="icon" nz-icon nzType="edit" nzTheme="outline"></i>
 </div>

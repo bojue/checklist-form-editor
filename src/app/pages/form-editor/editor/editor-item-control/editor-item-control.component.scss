@@ -6,3 +6,13 @@ button {
     font-size: 20px;
   }
 }
+.disabled {
+  opacity: 0.5;
+}
+.controls {
+  display: inline-block;
+}
+
+.editorItem {
+  padding: 5px 0;
+}

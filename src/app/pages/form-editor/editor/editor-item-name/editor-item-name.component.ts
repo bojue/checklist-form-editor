@@ -8,16 +8,18 @@ import { Component, Input, OnInit } from '@angular/core';
 export class EditorItemNameComponent implements OnInit {
   @Input() item: any
   @Input() full: boolean
+  @Input() param: string
   size = 'small'
+  isTitle =  false 
 
   constructor() { }
 
   ngOnInit(): void {
+    this.isTitle = this.param === 'name'
   }
 
   changeValue(event) {
-    console.log(event.target.textContent, )
-    this.item.label = event.target.textContent
+    this.item[this.param || 'label'] = event.target.textContent
   }
 
 }

@@ -1,1 +1,5 @@
-<p>item-select works!</p>
+<div class="item">
+  <nz-select nzShowSearch nzAllowClear [nzPlaceHolder]="placeholder">
+    <nz-option *ngFor="let item of list;" [nzLabel]="item" [nzValue]="item"></nz-option>
+  </nz-select>
+</div>

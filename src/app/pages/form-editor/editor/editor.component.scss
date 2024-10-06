@@ -1,17 +1,18 @@
 .header {
   font-size: 24px;
   font-weight: 500;
-  width: 1605px;
   text-align: center;
   margin: 20px 10px 10px 10px;
 }
 .editor-body {
   position: relative;
   padding: 0px 0;
-  width: 1605px;
+  width: 1400px;
+  left: 50%;
+  transform: translateX(-50%);
   .editor-title {
     display: grid;
-    grid-template-columns:repeat(8, 200px);
+    grid-template-columns: repeat(7, 200px);
     font-size: 14px;
     font-weight: 500;
     height: 40px;
@@ -46,4 +47,7 @@
   button {
     margin-right: 10px;
   }
+}
+app-nav-operation {
+  text-align: center;
 }

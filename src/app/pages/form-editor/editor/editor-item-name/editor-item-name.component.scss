@@ -1,5 +1,5 @@
 .editor:empty:before{ 
-  content: '请输入标内容'; 
+  content: '请输入标题内容'; 
   color: rgba(0, 0, 0, 0.35); 
   padding: 2px 0;
 } 
@@ -21,3 +21,15 @@
 .width-custom {
   width: 132px;
 }
+
+.title {
+  width: 100%;
+  display: inline;
+  color: steelblue;
+  padding: 5px 12px;
+
+  .icon {
+    font-size: 18px;
+  }
+}
+

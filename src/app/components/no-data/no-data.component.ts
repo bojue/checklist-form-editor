@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-no-data',
@@ -8,10 +8,15 @@ import { Component, Input, OnInit } from '@angular/core';
 export class NoDataComponent implements OnInit {
   @Input() title: string
   @Input() buttonText: string
+  @Output() createForm = new EventEmitter()
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  add() {
+    this.createForm.emit()
   }
 
 }
